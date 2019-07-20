@@ -13,7 +13,7 @@ current localization:
 
 -english
 -englishgb
--spanish
+-espanol
 -french
 -italian
 
