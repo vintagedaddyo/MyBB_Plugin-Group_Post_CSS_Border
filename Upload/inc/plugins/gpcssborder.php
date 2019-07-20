@@ -14,7 +14,7 @@
  *
  *  MyBB Version: 1.8
  *
- *  Plugin Version: 1.0
+ *  Plugin Version: 1.1
  *
  ***************************************************************************/
 
@@ -66,6 +66,7 @@ function gpcssborder_activate()
 global $mybb, $db;
 
 	$db->query("ALTER TABLE `".TABLE_PREFIX."usergroups` ADD `gpcssborder1` VARCHAR(1500) NOT NULL");
+	$db->query("ALTER TABLE `".TABLE_PREFIX."usergroups` ADD `gpcssborder2` VARCHAR(1500) NOT NULL");
 
 	include MYBB_ROOT."/inc/adminfunctions_templates.php";
 
@@ -77,7 +78,7 @@ find_replace_templatesets("postbit", "#".preg_quote("class=\"post {\$unapproved_
 
 // Postbit Classic Activate
 
-find_replace_templatesets("postbit_classic", "#".preg_quote("class=\"post classic {\$unapproved_shade}\" style=\"{\$post_visibility}\"")."#i", "class=\"post classic {\$unapproved_shade}\" style=\"{\$post_visibility} {\$post['gpcssborder1']}\"");
+find_replace_templatesets("postbit_classic", "#".preg_quote("class=\"post classic {\$unapproved_shade}\" style=\"{\$post_visibility}\"")."#i", "class=\"post classic {\$unapproved_shade}\" style=\"{\$post_visibility} {\$post['gpcssborder2']}\"");
 
 }
 
@@ -89,6 +90,7 @@ function gpcssborder_deactivate()
 global $mybb, $db;
 
 	$db->query("ALTER TABLE ".TABLE_PREFIX."usergroups DROP `gpcssborder1`");
+	$db->query("ALTER TABLE ".TABLE_PREFIX."usergroups DROP `gpcssborder2`");
 
 	include MYBB_ROOT."/inc/adminfunctions_templates.php";
 
@@ -100,7 +102,7 @@ find_replace_templatesets("postbit", "#".preg_quote("style=\"{\$post_visibility}
 
 // Postbit Classic Deactivate
 
-find_replace_templatesets("postbit_classic", "#".preg_quote("style=\"{\$post_visibility} {\$post['gpcssborder1']}\"")."#i", "style=\"{\$post_visibility}\"", 0);
+find_replace_templatesets("postbit_classic", "#".preg_quote("style=\"{\$post_visibility} {\$post['gpcssborder2']}\"")."#i", "style=\"{\$post_visibility}\"", 0);
 
 }
 
@@ -120,7 +122,8 @@ function gpcssborder_do()
 global $db, $mybb, $usergroup;
 	
 	$update_array = array(
-		"gpcssborder1" => $db->escape_string($mybb->input['gpcssborder1'])
+		"gpcssborder1" => $db->escape_string($mybb->input['gpcssborder1']),
+		"gpcssborder2" => $db->escape_string($mybb->input['gpcssborder2']),		
 	);
 
 	$db->update_query("usergroups", $update_array, "gid='".intval($usergroup['gid'])."'");
@@ -146,6 +149,14 @@ if($pluginargs['title'] == $lang->misc)
 			
 		$form_container->output_row("{$lang->gpcssborder_1_Title}", "{$lang->gpcssborder_1_Description}", "<div class=\"group_settings_bit\">".implode("</div><div class=\"group_settings_bit\">", $gpcssborder1)."</div>");
 
+	//Setting 2
+
+		$gpcssborder2 = array(
+			$form->generate_text_area('gpcssborder2', $usergroup['gpcssborder2'], array()),
+			);
+			
+		$form_container->output_row("{$lang->gpcssborder_2_Title}", "{$lang->gpcssborder_2_Description}", "<div class=\"group_settings_bit\">".implode("</div><div class=\"group_settings_bit\">", $gpcssborder2)."</div>");
+
 }
 }
 
@@ -156,6 +167,7 @@ function gpcssborder_post_prev(&$post)
 	$group = usergroup_permissions($post['usergroup']);
 	
 	$post['gpcssborder1'] = $group['gpcssborder1'];
+	$post['gpcssborder2'] = $group['gpcssborder2'];
 
 	eval("\$postbit = \"".$templates->get("postbit")."\";");
 	
@@ -168,6 +180,7 @@ function gpcssborder_post_pm(&$post)
 	$group = usergroup_permissions($post['usergroup']);
 	
 	$post['gpcssborder1'] = $group['gpcssborder1'];
+	$post['gpcssborder2'] = $group['gpcssborder2'];
 
 	eval("\$postbit = \"".$templates->get("postbit")."\";");
 	
@@ -180,6 +193,7 @@ function gpcssborder_post_announcement(&$post)
 	$group = usergroup_permissions($post['usergroup']);
 	
 	$post['gpcssborder1'] = $group['gpcssborder1'];
+	$post['gpcssborder2'] = $group['gpcssborder2'];
 
 	eval("\$postbit = \"".$templates->get("postbit")."\";");
 	
@@ -192,8 +206,10 @@ function gpcssborder_post(&$post)
 	$group = usergroup_permissions($post['usergroup']);
 	
 	$post['gpcssborder1'] = $group['gpcssborder1'];
+	$post['gpcssborder2'] = $group['gpcssborder2'];
 
 	eval("\$postbit = \"".$templates->get("postbit")."\";");
 	
 }
+
 ?>

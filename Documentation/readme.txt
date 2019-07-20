@@ -9,16 +9,35 @@ Version: 1.0
 Authors: Jammerx2, Vintagedaddyo
 Submitted: 20th July 2019
 
+- initial release
+
+Version: 1.1
+Authors: Jammerx2, Vintagedaddyo
+Submitted: 20th July 2019
+
+- added option for post & or postbit classic 
+
 current localization:
 
 -english
 -englishgb
 -espanol
 -french
--italian
+-italiano
 
 ** Note: this plugin should not be used currently with the "group post css plugin" as it will cause complications on uninstall and this border plugin is meant to be used standalone. The features of this border plugin may be added to the the "group post css plugin" at some time as is planned.
 
+
+Postbit Border:
+
+
+Postbit Post Border CSS:
+The CSS that will be used for the border part of the postbit.
+
+&
+
+Postbit Post Border CSS (Classic Postbit Only):
+The CSS that will be used for the border part of the classic postbit.
 
 Example CSS:
 

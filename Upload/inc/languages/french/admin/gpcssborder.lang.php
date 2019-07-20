@@ -14,7 +14,7 @@
  *
  *  MyBB Version: 1.8
  *
- *  Plugin Version: 1.0
+ *  Plugin Version: 1.1
  *
  ***************************************************************************/
 
@@ -25,12 +25,17 @@ $l['gpcssborder_Desc'] = 'Vous permet d ajouter une bordure CSS personnalisee po
 $l['gpcssborder_Web'] = 'http://community.mybb.com/user-6029.html';
 $l['gpcssborder_Auth'] = 'Jammerx2 & Vintagedaddyo';
 $l['gpcssborder_AuthSite'] = 'http://community.mybb.com/user-6029.html';
-$l['gpcssborder_Ver'] = '1.0';
+$l['gpcssborder_Ver'] = '1.1';
 $l['gpcssborder_Compat'] = '18*';
 
 // setting 1
 
 $l['gpcssborder_1_Title'] = 'CSS post-frontiere post-frontiere';
 $l['gpcssborder_1_Description'] = 'Le CSS qui sera utilise pour la partie frontiere du postbit.';
+
+// setting 2
+
+$l['gpcssborder_2_Title'] = 'CSS post-frontiere post-frontiere (Postbit classique uniquement)';
+$l['gpcssborder_2_Description'] = 'Le CSS qui sera utilise pour la partie frontiere du postbit classique.';
 
 ?>
